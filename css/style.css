@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+:root {
+    /* text */
+    --text-main: 14px;
+    --lspacing-main: -0.19px;
+    --text-list: 18px;
+    --lspacing-list: -0.25px;
+    --text-logo: 40px;
+    --lspacing-logo: 15px;
+
+    /* colors */
+    --very-light-gray: #fafafa;
+    --very-light-grayish-blue: #e4e5f1;
+    --light--gayish-blue: #d2d3db;
+    --dark-grayish-blue: #9394a5;
+    --very-dark-grayish-blue: #484b6a;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100vh;
+}
+
+body {
+    font-family: "Josefin Sans", serif;
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: -0.19px;
+}
+
+
+.dark-theme {
+    --very-light-gray: #161722;
+    --very-light-grayish-blue: #e4e5f1;
+    --light--gayish-blue: #d2d3db;
+    --dark-grayish-blue: #9394a5;
+    --very-dark-grayish-blue: #484b6a;
+
+
+/* -  Very Dark Blue: #161722
+- Very Dark Desaturated Blue: #25273c
+- Light Grayish Blue: #cacde8
+- Light Grayish Blue (hover): #e4e5f1
+- Dark Grayish Blue: #777a92
+- Very Dark Grayish Blue: #4d5066
+- Very Dark Grayish Blue: #393a4c */
+
+
+}
