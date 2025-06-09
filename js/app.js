@@ -33,6 +33,7 @@ addClick.addEventListener("click", () => {
 
 function createNewTodoItem(value) {
     const element = document.createElement("li");
+    element.setAttribute("draggable", "true")
     element.classList.add("flex-row");
     element.innerHTML = `
         <label class="list-item">
@@ -74,3 +75,6 @@ function addRemoveFunction() {
         });
     });
 }
+
+
+addRemoveFunction();

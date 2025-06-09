@@ -3,7 +3,12 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="./images/favicon-32x32.png"
+        />
         <link rel="stylesheet" href="./css/style.css" />
 
         <title>Frontend Mentor | Todo app</title>
@@ -19,11 +24,16 @@
         <main>
             <div class="new-todo flex-row">
                 <span></span>
-                <input type="text" placeholder="Create a new todo..." name="addItem" id="addItem" />
+                <input
+                    type="text"
+                    placeholder="Create a new todo..."
+                    name="addItem"
+                    id="addItem"
+                />
             </div>
             <div class="todos">
                 <ul>
-                    <li class="flex-row">
+                    <li class="flex-row" draggable="true">
                         <label class="list-item">
                             <input type="checkbox" name="todoItem" checked />
                             <span class="checkmark"></span>
@@ -31,7 +41,7 @@
                         </label>
                         <span class="remove"></span>
                     </li>
-                    <li class="flex-row">
+                    <li class="flex-row" draggable="true">
                         <label class="list-item">
                             <input type="checkbox" name="todoItem" />
                             <span class="checkmark"></span>
@@ -39,7 +49,7 @@
                         </label>
                         <span class="remove"></span>
                     </li>
-                    <li class="flex-row">
+                    <li class="flex-row" draggable="true">
                         <label class="list-item">
                             <input type="checkbox" name="todoItem" />
                             <span class="checkmark"></span>
@@ -61,7 +71,12 @@
                         <span>Active</span>
                     </label>
                     <label>
-                        <input type="radio" name="filter" id="completed" checked />
+                        <input
+                            type="radio"
+                            name="filter"
+                            id="completed"
+                            checked
+                        />
                         <span>Completed</span>
                     </label>
                 </div>
