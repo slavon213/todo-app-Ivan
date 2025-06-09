@@ -12,11 +12,23 @@
     /* colors */
     --bright-blue: #3a7bfd;
     --check-background: linear-gradient #57ddff to #c058f3;
+    /* light-theme */
     --very-light-gray: #fafafa;
     --very-light-grayish-blue: #e4e5f1;
     --light--gayish-blue: #d2d3db;
     --dark-grayish-blue: #9394a5;
     --very-dark-grayish-blue: #484b6a;
+
+    /* dark-theme */
+    --very-dark-blue: #161722;
+    --very-dark-desaturated-blue: #25273c;
+    --light-grayish-blue: #cacde8;
+    --light-grayish-blue-hover: #e4e5f1;
+    --dark-grayish-blue: #777a92;
+    --very-dark-grayish-blue: #4d5066;
+    --very-dark-grayish-blue: #393a4c;
+
+    /* image */
 }
 
 *,
@@ -33,10 +45,13 @@ body {
 }
 
 body {
+    background: var(--bg-image-top);
+    background-size: contain;
     font-family: "Josefin Sans", serif;
     font-weight: 400;
     font-size: 18px;
-    letter-spacing: -0.19px;
+    color: var(--color-font);
+    /* letter-spacing: -0.19px; */
 }
 
 img {
@@ -44,18 +59,34 @@ img {
     width: 100%;
 }
 
-.dark-theme {
-    /* --very-light-gray: #161722;
-    --very-light-grayish-blue: #e4e5f1;
-    --light--gayish-blue: #d2d3db;
-    --dark-grayish-blue: #9394a5;
-    --very-dark-grayish-blue: #484b6a; */
+.light-theme {
+    --bg-image-top: 0 0 url("../images/bg-desktop-light.jpg") no-repeat;
+    --bg-main-color: #fafafa;
+    --bg-todos: #fafafa;
+    --color-font: #9394a5;
+    --color-font-hover: #161722;
+    --shadow-todos: #484b6a;
+}
 
-    --very-dark-blue: #161722;
-    --very-dark-desaturated-blue: #25273c;
-    --light-grayish-blue: #cacde8;
-    --light-grayish-blue-hover: #e4e5f1;
-    --dark-grayish-blue: #777a92;
-    --very-dark-grayish-blue: #4d5066;
-    --very-dark-grayish-blue: #393a4c;
+.dark-theme {
+    --bg-image-top: 0 0 url("../images/bg-desktop-dark.jpg") no-repeat;
+    --bg-main-color: #161722;
+    --bg-todos: #25273c;
+    --color-font: #cacde8;
+    --color-font-hover: #fff;
+    --shadow-todos: #161722;
+}
+
+header,
+main,
+footer {
+    max-width: 545px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 32px;
+    color: #fff;
+    letter-spacing: 1rem;
 }
