@@ -10,6 +10,8 @@
     --lspacing-logo: 15px;
 
     /* colors */
+    --bright-blue: #3a7bfd;
+    --check-background: linear-gradient #57ddff to #c058f3;
     --very-light-gray: #fafafa;
     --very-light-grayish-blue: #e4e5f1;
     --light--gayish-blue: #d2d3db;
@@ -33,26 +35,27 @@ body {
 body {
     font-family: "Josefin Sans", serif;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 18px;
     letter-spacing: -0.19px;
 }
 
+img {
+    display: block;
+    width: 100%;
+}
 
 .dark-theme {
-    --very-light-gray: #161722;
+    /* --very-light-gray: #161722;
     --very-light-grayish-blue: #e4e5f1;
     --light--gayish-blue: #d2d3db;
     --dark-grayish-blue: #9394a5;
-    --very-dark-grayish-blue: #484b6a;
+    --very-dark-grayish-blue: #484b6a; */
 
-
-/* -  Very Dark Blue: #161722
-- Very Dark Desaturated Blue: #25273c
-- Light Grayish Blue: #cacde8
-- Light Grayish Blue (hover): #e4e5f1
-- Dark Grayish Blue: #777a92
-- Very Dark Grayish Blue: #4d5066
-- Very Dark Grayish Blue: #393a4c */
-
-
+    --very-dark-blue: #161722;
+    --very-dark-desaturated-blue: #25273c;
+    --light-grayish-blue: #cacde8;
+    --light-grayish-blue-hover: #e4e5f1;
+    --dark-grayish-blue: #777a92;
+    --very-dark-grayish-blue: #4d5066;
+    --very-dark-grayish-blue: #393a4c;
 }
