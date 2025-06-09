@@ -51,12 +51,17 @@ body {
     font-weight: 400;
     font-size: 18px;
     color: var(--color-font);
-    /* letter-spacing: -0.19px; */
 }
 
 img {
     display: block;
     width: 100%;
+}
+
+.flex-row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
 }
 
 .light-theme {
@@ -84,9 +89,37 @@ footer {
     margin: 0 auto;
 }
 
+header {
+    justify-content: space-between;
+    padding-block-start: 52px;
+    padding-block-end: 11px;
+}
+
 h1 {
     font-weight: 700;
     font-size: 32px;
     color: #fff;
     letter-spacing: 1rem;
+    text-transform: uppercase;
+}
+
+/* .theme {
+    margin-block-start: -10px;
+} */
+
+.theme #theme {
+    display: none;
+}
+
+.theme #theme + label::before {
+    content: "";
+    background: url("../images/icon-moon.svg");
+    display: block;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+}
+
+.theme #theme:checked + label::before {
+    background: url("../images/icon-sun.svg");
 }
