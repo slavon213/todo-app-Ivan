@@ -45,6 +45,10 @@ body {
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-items: stretch; 
     background: var(--bg-image-top);
     background-color: var(--bg-main-color);
     background-size: contain;
@@ -86,7 +90,7 @@ img {
 header,
 main,
 footer {
-    max-width: 545px;
+    width: min(545px, 100%);
     margin: 0 auto;
 }
 
@@ -96,6 +100,16 @@ header {
     padding-block-end: 11px;
 }
 
+main {
+    margin-block-end: auto;
+}
+
+footer {
+    text-align: center;
+}
+
+
+
 h1 {
     font-weight: 700;
     font-size: 32px;
@@ -103,6 +117,7 @@ h1 {
     letter-spacing: 1rem;
     text-transform: uppercase;
 }
+
 
 /* .theme {
     margin-block-start: -10px;
@@ -226,7 +241,7 @@ ul {
         display: none;
     }
 
-    li:hover .remove{
+    li:hover .remove {
         display: block;
     }
 }
@@ -240,7 +255,6 @@ ul {
     border-radius: 50%;
 }
 
-
 .remove {
     background: url("../images/icon-cross.svg") no-repeat;
     width: 18px;
@@ -250,4 +264,48 @@ ul {
     position: absolute;
     right: 25px;
     top: 25px;
+}
+
+.control {
+    padding: 20px;
+    padding-inline-start: 27px;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    align-items: baseline;
+    border-radius: var(--border-radius-5);
+    background: var(--bg-todos);
+    justify-content: space-between;
+
+
+}
+
+/* .items-left { */
+/* margin-inline-end: 86px; */
+/* } */
+
+.filter {
+    gap: 10px;
+
+    input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        height: 0;
+        width: 0;
+        cursor: pointer;
+    }
+
+    input[type="radio"]:checked ~ span {
+        color: var(--bright-blue);
+    }
+
+    label {
+        cursor: pointer;
+    }
+}
+
+.clear {
+    cursor: pointer;
+    &:hover {
+        color: var(--color-font-hover);
+    }
 }
