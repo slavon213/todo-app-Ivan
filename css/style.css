@@ -11,7 +11,6 @@
 
     /* colors */
     --bright-blue: #3a7bfd;
-    --check-background: linear-gradient #57ddff to #c058f3;
     /* light-theme */
     --very-light-gray: #fafafa;
     --very-light-grayish-blue: #e4e5f1;
@@ -28,7 +27,8 @@
     --very-dark-grayish-blue: #4d5066;
     --very-dark-grayish-blue: #393a4c;
 
-    /* image */
+    /* border-radius */
+    --border-radius-5: 5px;
 }
 
 *,
@@ -46,8 +46,9 @@ body {
 
 body {
     background: var(--bg-image-top);
+    background-color: var(--bg-main-color);
     background-size: contain;
-    font-family: "Josefin Sans", serif;
+    font-family: "Josefin Sans", sans-serif;
     font-weight: 400;
     font-size: 18px;
     color: var(--color-font);
@@ -122,4 +123,131 @@ h1 {
 
 .theme #theme:checked + label::before {
     background: url("../images/icon-sun.svg");
+}
+
+.new-todo {
+    background: var(--bg-todos);
+    height: 65px;
+    border-radius: var(--border-radius-5);
+    margin-block-end: 24px;
+    padding-inline: 26px;
+    width: 100%;
+    position: relative;
+}
+
+.new-todo #addItem {
+    background: transparent;
+    color: var(--color-font);
+    border: 0;
+    outline: 0;
+    width: 100%;
+    height: 50px;
+    letter-spacing: -0.3px;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 18px;
+    margin-block-start: 4px;
+    margin-inline-start: 47px;
+}
+
+.new-todo span {
+    width: 25px;
+    height: 25px;
+    border: 1px solid var(--color-font);
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    /* left: 26px;  */
+    /* top: 21px; */
+    cursor: pointer;
+}
+
+.new-todo span:hover {
+    background: center no-repeat url("../images/icon-check.svg"),
+        linear-gradient(135deg, #57ddff, #c058f3);
+}
+
+.todos {
+    background: var(--bg-todos);
+    border-radius: var(--border-radius-5);
+    box-shadow: 0 42px 30px -9px var(--shadow-todos);
+}
+
+ul {
+    list-style: none;
+
+    li {
+        min-height: 65px;
+        padding-inline-start: 25px;
+        padding-inline-end: 10px;
+        border-bottom: 1px solid var(--color-font);
+        position: relative;
+    }
+
+    li input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        width: 0;
+        height: 0;
+    }
+
+    li input[type="checkbox"] ~ .checkmark {
+        border: 1px solid var(--color-font);
+    }
+    li input[type="checkbox"] ~ .checkmark:hover {
+        border-color: transparent;
+        background: linear-gradient(var(--bg-todos), var(--bg-todos))
+                padding-box,
+            linear-gradient(135deg, #57ddff, #c058f3) border-box;
+    }
+
+    li input[type="checkbox"]:checked ~ .checkmark:hover {
+        /* border: transparent; */
+        border: 1px solid var(--color-font);
+    }
+
+    li input[type="checkbox"]:checked ~ .checkmark {
+        background: center no-repeat url("../images/icon-check.svg"),
+            linear-gradient(135deg, #57ddff, #c058f3);
+    }
+
+    li input[type="checkbox"]:checked ~ .text {
+        text-decoration: line-through;
+    }
+
+    li label {
+        position: relative;
+        cursor: pointer;
+        font-size: 18px;
+        padding: 2px 0 0 48px;
+    }
+
+    li.hidden {
+        display: none;
+    }
+
+    li:hover .remove{
+        display: block;
+    }
+}
+
+.checkmark {
+    position: absolute;
+    top: -3px;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+}
+
+
+.remove {
+    background: url("../images/icon-cross.svg") no-repeat;
+    width: 18px;
+    height: 18px;
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+    top: 25px;
 }
