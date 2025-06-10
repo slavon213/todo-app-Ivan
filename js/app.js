@@ -5,6 +5,7 @@ const newItemInput = document.getElementById("addItem");
 const todoList = document.querySelector(".todos ul");
 const itemsLeft = document.querySelector(".items-left span");
 const addClick = document.querySelector(".new-todo span");
+const clearButton = document.querySelector(".clear");
 console.log(itemsLeft.textContent);
 
 // itemsLeft.innerText = document.querySelectorAll(
@@ -12,9 +13,7 @@ console.log(itemsLeft.textContent);
 // ).length;
 
 theme.addEventListener("click", () => {
-    document.querySelector("body").classList = [
-        theme.checked ? "light-theme" : "dark-theme",
-    ];
+    document.querySelector("body").classList = [theme.checked ? "light-theme" : "dark-theme"];
 });
 
 newItemInput.addEventListener("keydown", (e) => {
@@ -33,7 +32,7 @@ addClick.addEventListener("click", () => {
 
 function createNewTodoItem(value) {
     const element = document.createElement("li");
-    element.setAttribute("draggable", "true")
+    element.setAttribute("draggable", "true");
     element.classList.add("flex-row");
     element.innerHTML = `
         <label class="list-item">
@@ -43,13 +42,9 @@ function createNewTodoItem(value) {
         </label>
         <span class="remove"></span>
     `;
-    console.log(element);
-    if (
-        document.querySelector('.filter input[type="radio"]:checked').id ===
-        "completed"
-    ) {
-        element.classList.add("hidden");
-    }
+    // if (document.querySelector('.filter input[type="radio"]:checked').id === "completed") {
+    //     element.classList.add("hidden");
+    // }
 
     todoList.append(element);
 
@@ -76,5 +71,12 @@ function addRemoveFunction() {
     });
 }
 
+clearButton.addEventListener("click", () => {
+    let completed = document.querySelectorAll('.list-item input[type="checkbox"]:checked');
+
+    completed.forEach((element) => {
+        removeTodo(element.closest("li"));
+    });
+});
 
 addRemoveFunction();
