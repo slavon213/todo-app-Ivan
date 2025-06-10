@@ -1,12 +1,13 @@
 const theme = document.getElementById("theme");
-console.log(theme);
 
 const newItemInput = document.getElementById("addItem");
 const todoList = document.querySelector(".todos ul");
 const itemsLeft = document.querySelector(".items-left span");
 const addClick = document.querySelector(".new-todo span");
+
 const clearButton = document.querySelector(".clear");
-console.log(itemsLeft.textContent);
+
+const filterButtons = document.querySelectorAll('.filter input[type="radio"]');
 
 // itemsLeft.innerText = document.querySelectorAll(
 //     '.list-item input[type="checkbox"]'
@@ -79,4 +80,34 @@ clearButton.addEventListener("click", () => {
     });
 });
 
+filterButtons.forEach((button) => {
+    button.addEventListener("change", (event) => {
+        filterItems(event.target.id);
+    });
+});
+
+function filterItems(idItem) {
+    const allItems = document.querySelectorAll("li");
+
+    switch (idItem) {
+        case "all":
+            allItems.forEach((item) => {
+                item.classList.remove("hidden");
+            });
+            break;
+        case "active":
+            allItems.forEach((item) => {
+                item.querySelector("input").checked ? item.classList.add("hidden") : item.classList.remove("hidden");
+            });
+
+            break;
+        case "completed":
+            allItems.forEach((item) => {
+                item.querySelector("input").checked ? item.classList.remove("hidden") : item.classList.add("hidden");
+            });
+
+        default:
+            break;
+    }
+}
 addRemoveFunction();
