@@ -4,6 +4,7 @@ const newItemInput = document.getElementById("addItem");
 const todoList = document.querySelector(".todos ul");
 const itemsLeft = document.querySelector(".items-left span");
 const addClick = document.querySelector(".new-todo span");
+const checkCompletedLst = document.querySelectorAll('ul li input[type="checkbox"]');
 
 const clearButton = document.querySelector(".clear");
 
@@ -43,16 +44,24 @@ function createNewTodoItem(value) {
     todoList.append(element);
 
     addRemoveFunction();
-    updateItemsLeft(1);
+    updateItemsLeft();
+    addDragFunction();
 }
 
-function updateItemsLeft(value) {
-    itemsLeft.textContent = Number(itemsLeft.textContent) + value;
+function updateItemsLeft() {
+    const activeItems = document.querySelectorAll('ul li input[type="checkbox"]:not(:checked)').length;
+    itemsLeft.textContent = activeItems;
 }
+
+checkCompletedLst.forEach(check => {
+    check.addEventListener("change", () => {
+        updateItemsLeft();
+    })
+})
 
 function removeTodo(elem) {
     elem.remove();
-    updateItemsLeft(-1);
+    updateItemsLeft();
 }
 
 function addRemoveFunction() {
@@ -103,35 +112,44 @@ function filterItems(idItem) {
             break;
     }
 }
-addRemoveFunction();
 
 // Drag&Drop
-let draggedElement = null;
-const listLiItems = document.querySelectorAll("li");
-listLiItems.forEach((itemLi) => {
-    itemLi.addEventListener("dragstart", () => {
-        draggedElement = itemLi;
-    });
 
-    itemLi.addEventListener("dragover", (e) => {
-        e.preventDefault();
-        e.target.classList.add("dragged");
-    });
+function addDragFunction(){
 
-    itemLi.addEventListener("dragleave", (e) => {
-        e.target.classList.remove("dragged");
+    let draggedElement = null;
+    const listLiItems = document.querySelectorAll("li");
+    listLiItems.forEach((itemLi) => {
+        itemLi.addEventListener("dragstart", () => {
+            draggedElement = itemLi;
+        });
+        
+        itemLi.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            e.target.classList.add("dragged");
+        });
+        
+        itemLi.addEventListener("dragleave", (e) => {
+            e.target.classList.remove("dragged");
+        });
+        
+        itemLi.addEventListener("drop", (e) => {
+            const rect = e.target.getBoundingClientRect();
+            const itemY = e.clientY;
+            const halfLi = rect.top + rect.height / 2;
+            
+            if (itemY < halfLi) {
+                e.target.parentNode.insertBefore(draggedElement, itemLi);
+            } else {
+                e.target.parentNode.insertBefore(draggedElement, itemLi.nextSibling);
+            }
+            e.target.classList.remove("dragged");
+        });
     });
+}
 
-    itemLi.addEventListener("drop", (e) => {
-        const rect = e.target.getBoundingClientRect();
-        const itemY = e.clientY;
-        const halfLi = rect.top + rect.height / 2;
 
-        if (itemY < halfLi) {
-            e.target.parentNode.insertBefore(draggedElement, itemLi);
-        } else {
-            e.target.parentNode.insertBefore(draggedElement, itemLi.nextSibling);
-        }
-        e.target.classList.remove("dragged");
-    });
-});
+
+addRemoveFunction();
+addDragFunction();
+updateItemsLeft();
