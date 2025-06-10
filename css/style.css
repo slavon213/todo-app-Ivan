@@ -309,3 +309,9 @@ ul {
         color: var(--color-font-hover);
     }
 }
+
+
+.dragged {
+    border-bottom: 1px solid var(--bright-blue);
+
+}

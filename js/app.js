@@ -113,11 +113,25 @@ listLiItems.forEach((itemLi) => {
         draggedElement = itemLi;
     });
 
-    itemLi.addEventListener("dragover", (e)=>{
+    itemLi.addEventListener("dragover", (e) => {
         e.preventDefault();
-    })
+        e.target.classList.add("dragged");
+    });
 
-    itemLi.addEventListener("drop", (e)=>{
-        e.target.parentNode.insertBefore(draggedElement, itemLi);
-    })
+    itemLi.addEventListener("dragleave", (e) => {
+        e.target.classList.remove("dragged");
+    });
+
+    itemLi.addEventListener("drop", (e) => {
+        const rect = e.target.getBoundingClientRect();
+        const itemY = e.clientY;
+        const halfLi = rect.top + rect.height / 2;
+
+        if (itemY < halfLi) {
+            e.target.parentNode.insertBefore(draggedElement, itemLi);
+        } else {
+            e.target.parentNode.insertBefore(draggedElement, itemLi.nextSibling);
+        }
+        e.target.classList.remove("dragged");
+    });
 });
