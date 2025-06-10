@@ -40,6 +40,9 @@ function createNewTodoItem(value) {
         </label>
         <span class="remove"></span>
     `;
+    element.addEventListener("change", () => {
+        updateItemsLeft();
+    });
 
     todoList.append(element);
 
@@ -53,11 +56,11 @@ function updateItemsLeft() {
     itemsLeft.textContent = activeItems;
 }
 
-checkCompletedLst.forEach(check => {
+checkCompletedLst.forEach((check) => {
     check.addEventListener("change", () => {
         updateItemsLeft();
-    })
-})
+    });
+});
 
 function removeTodo(elem) {
     elem.remove();
@@ -115,29 +118,28 @@ function filterItems(idItem) {
 
 // Drag&Drop
 
-function addDragFunction(){
-
+function addDragFunction() {
     let draggedElement = null;
     const listLiItems = document.querySelectorAll("li");
     listLiItems.forEach((itemLi) => {
         itemLi.addEventListener("dragstart", () => {
             draggedElement = itemLi;
         });
-        
+
         itemLi.addEventListener("dragover", (e) => {
             e.preventDefault();
             e.target.classList.add("dragged");
         });
-        
+
         itemLi.addEventListener("dragleave", (e) => {
             e.target.classList.remove("dragged");
         });
-        
+
         itemLi.addEventListener("drop", (e) => {
             const rect = e.target.getBoundingClientRect();
             const itemY = e.clientY;
             const halfLi = rect.top + rect.height / 2;
-            
+
             if (itemY < halfLi) {
                 e.target.parentNode.insertBefore(draggedElement, itemLi);
             } else {
@@ -148,12 +150,6 @@ function addDragFunction(){
     });
 }
 
-
-
 addRemoveFunction();
 addDragFunction();
 updateItemsLeft();
-
-
-
-
