@@ -9,10 +9,6 @@ const clearButton = document.querySelector(".clear");
 
 const filterButtons = document.querySelectorAll('.filter input[type="radio"]');
 
-// itemsLeft.innerText = document.querySelectorAll(
-//     '.list-item input[type="checkbox"]'
-// ).length;
-
 theme.addEventListener("click", () => {
     document.querySelector("body").classList = [theme.checked ? "light-theme" : "dark-theme"];
 });
@@ -43,9 +39,6 @@ function createNewTodoItem(value) {
         </label>
         <span class="remove"></span>
     `;
-    // if (document.querySelector('.filter input[type="radio"]:checked').id === "completed") {
-    //     element.classList.add("hidden");
-    // }
 
     todoList.append(element);
 
@@ -111,3 +104,20 @@ function filterItems(idItem) {
     }
 }
 addRemoveFunction();
+
+// Drag&Drop
+let draggedElement = null;
+const listLiItems = document.querySelectorAll("li");
+listLiItems.forEach((itemLi) => {
+    itemLi.addEventListener("dragstart", () => {
+        draggedElement = itemLi;
+    });
+
+    itemLi.addEventListener("dragover", (e)=>{
+        e.preventDefault();
+    })
+
+    itemLi.addEventListener("drop", (e)=>{
+        e.target.parentNode.insertBefore(draggedElement, itemLi);
+    })
+});
