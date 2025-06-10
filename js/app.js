@@ -153,3 +153,7 @@ function addDragFunction(){
 addRemoveFunction();
 addDragFunction();
 updateItemsLeft();
+
+
+
+
