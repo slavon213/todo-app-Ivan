@@ -2,30 +2,30 @@
 
 :root {
     /* text */
-    --text-main: 14px;
+    /* --text-main: 14px;
     --lspacing-main: -0.19px;
     --text-list: 18px;
     --lspacing-list: -0.25px;
     --text-logo: 40px;
-    --lspacing-logo: 15px;
+    --lspacing-logo: 15px; */
 
     /* colors */
     --bright-blue: #3a7bfd;
     /* light-theme */
-    --very-light-gray: #fafafa;
+    /* --very-light-gray: #fafafa;
     --very-light-grayish-blue: #e4e5f1;
     --light--gayish-blue: #d2d3db;
     --dark-grayish-blue: #9394a5;
-    --very-dark-grayish-blue: #484b6a;
+    --very-dark-grayish-blue: #484b6a; */
 
     /* dark-theme */
-    --very-dark-blue: #161722;
+    /* --very-dark-blue: #161722;
     --very-dark-desaturated-blue: #25273c;
     --light-grayish-blue: #cacde8;
     --light-grayish-blue-hover: #e4e5f1;
     --dark-grayish-blue: #777a92;
     --very-dark-grayish-blue: #4d5066;
-    --very-dark-grayish-blue: #393a4c;
+    --very-dark-grayish-blue: #393a4c; */
 
     /* border-radius */
     --border-radius-5: 5px;
@@ -55,7 +55,10 @@ body {
     font-family: "Josefin Sans", sans-serif;
     font-weight: 400;
     font-size: 18px;
+    letter-spacing: -0.25px;
     color: var(--color-font);
+    gap: 48px;
+    padding-block-start: 70px;
 }
 
 img {
@@ -82,30 +85,35 @@ img {
     --bg-image-top: 0 0 url("../images/bg-desktop-dark.jpg") no-repeat;
     --bg-main-color: #161722;
     --bg-todos: #25273c;
-    --color-font: #cacde8;
-    --color-font-hover: #fff;
+    /* --color-font: #cacde8; */
+    --color-font: #C8CBE7;
+    --color-font-control: #5B5E7E;
+    --color-font-new-todo: #767992;
+    --color-font-line-through: #4D5067;
+    --color-font-hover: #E3E4F1;
     --shadow-todos: #161722;
 }
 
 header,
 main,
 footer {
-    width: min(545px, 100%);
+    width: min(540px, 100%);
     margin: 0 auto;
 }
 
 header {
     justify-content: space-between;
-    padding-block-start: 52px;
-    padding-block-end: 11px;
+    /* padding-block-start: 52px; */
+    /* padding-block-end: 11px; */
 }
 
 main {
-    margin-block-end: 80px;
+    margin-block-end: 49px;
 }
 
 footer {
     text-align: center;
+    color: #5B5E7E;
 }
 
 h1 {
@@ -126,7 +134,7 @@ h1 {
 
 .theme #theme + label::before {
     content: "";
-    background: url("../images/icon-moon.svg");
+    background: url("../images/icon-sun.svg");
     display: block;
     width: 26px;
     height: 26px;
@@ -134,17 +142,18 @@ h1 {
 }
 
 .theme #theme:checked + label::before {
-    background: url("../images/icon-sun.svg");
+    background: url("../images/icon-moon.svg");
 }
 
 .new-todo {
     background: var(--bg-todos);
-    height: 65px;
+    height: 64px;
     border-radius: var(--border-radius-5);
     margin-block-end: 24px;
     padding-inline: 26px;
     width: 100%;
     position: relative;
+    color: var(--color-font-new-todo);
 }
 
 .new-todo #addItem {
@@ -187,7 +196,7 @@ ul {
     list-style: none;
 
     li {
-        min-height: 65px;
+        min-height: 64px;
         padding-inline-start: 25px;
         padding-inline-end: 10px;
         border-bottom: 1px solid var(--color-font);
@@ -221,6 +230,7 @@ ul {
 
     li input[type="checkbox"]:checked ~ .text {
         text-decoration: line-through;
+        color: var(--color-font-line-through);
     }
 
     li label {
@@ -266,14 +276,15 @@ ul {
 .control {
     padding: 20px;
     padding-inline-start: 27px;
-    font-size: 0.8rem;
-    letter-spacing: 0.5px;
+    font-size: 14px;
+    letter-spacing: -0.19px;
     align-items: baseline;
     border-radius: var(--border-radius-5);
     background: var(--bg-todos);
     justify-content: space-between;
+    color: var(--color-font-control);
 
-    span:hover {
+    & * span:hover {
         color: var(--color-font-hover);
     }
 }
@@ -283,7 +294,7 @@ ul {
 /* } */
 
 .filter {
-    gap: 10px;
+    gap: 18px;
 
     input[type="radio"] {
         position: absolute;
