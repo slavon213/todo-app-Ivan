@@ -116,6 +116,18 @@ function filterItems(idItem) {
     }
 }
 
+
+// Move class filter in last div.control
+
+const filterBlock = document.querySelector('.control .filter');
+console.log(filterBlock);
+const lastFilterBlock = document.querySelector('.control.control-last');
+// console.log(lastFilterBlock);
+
+// lastFilterBlock.appendChild(filterBlock);
+// lastFilterBlock.style.display = 'block';
+
+
 // Drag&Drop
 
 function addDragFunction() {

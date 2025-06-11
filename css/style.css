@@ -83,8 +83,8 @@ img {
     --color-font-new-todo: #393a4b;
     --color-font-line-through: #d1d2da;
     --color-font-hover: #494c6b;
-    --color-border-li: #E3E4F1;
-    --shadow-todos: #C2C3D6;
+    --color-border-li: #e3e4f1;
+    --shadow-todos: #c2c3d6;
 }
 
 .dark-theme {
@@ -96,7 +96,7 @@ img {
     --color-font-new-todo: #767992;
     --color-font-line-through: #4d5067;
     --color-font-hover: #e3e4f1;
-    --color-border-li: #393A4B;
+    --color-border-li: #393a4b;
     --shadow-todos: #161722;
 }
 
@@ -124,11 +124,18 @@ footer {
 
 h1 {
     font-weight: 700;
-    font-size: 32px;
+    font-size: 40px;
     color: #fff;
     letter-spacing: 1rem;
     text-transform: uppercase;
 }
+/* 
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: center;
+} */
 
 /* .theme {
     margin-block-start: -10px;
@@ -178,7 +185,8 @@ h1 {
     height: 50px;
     letter-spacing: -0.3px;
     font-family: "Josefin Sans", sans-serif;
-    font-size: 18px;
+    /* font-size: 18px; */
+    font-size: inherit;
     margin-block-start: 4px;
     margin-inline-start: 47px;
 }
@@ -199,7 +207,7 @@ h1 {
 
 .todos {
     background: var(--bg-todos);
-    border-radius: var(--border-radius-5);
+    border-radius: var(--border-radius-5) var(--border-radius-5) 0 0;
     box-shadow: 0px 35px 50px 15px var(--shadow-todos);
 }
 
@@ -247,7 +255,7 @@ ul {
     li label {
         position: relative;
         cursor: pointer;
-        font-size: 18px;
+        font-size: inherit;
         padding: 2px 0 0 48px;
     }
 
@@ -290,7 +298,8 @@ ul {
     font-size: 14px;
     letter-spacing: -0.19px;
     align-items: baseline;
-    border-radius: var(--border-radius-5);
+    /* border-radius: var(--border-radius-5); */
+    border-radius: 0 0 var(--border-radius-5) var(--border-radius-5);
     background: var(--bg-todos);
     justify-content: space-between;
     color: var(--color-font-control);
@@ -300,13 +309,23 @@ ul {
     }
 }
 
-/* .items-left { */
-/* margin-inline-end: 86px; */
-/* } */
+.control-last {
+    display: none;
+    border-radius: var(--border-radius-5);
+    min-height: 48px;
+    margin-block-start: 24px;
+    /* justify-content: center; */
+    
+    & .filter {
+        font-size: 14px;
+
+    }
+}
 
 .filter {
     gap: 18px;
     font-weight: 700;
+    justify-content: center;
 
     input[type="radio"] {
         position: absolute;
@@ -335,6 +354,24 @@ ul {
 .dragged {
     border-bottom: 1px solid var(--bright-blue);
 }
+@media (max-width: 550px) {
+    
+    header,
+    main,
+    footer {
+        width: min(327px, 100%);
+    }
 
-/* TODO: clean code */
-/* TODO: add adaptive */
+    body {
+        font-size: 12px;
+    }
+    h1 {
+        font-size: 26px;
+    }
+
+    .control {
+        font-size: 12px;
+    }
+
+
+}
