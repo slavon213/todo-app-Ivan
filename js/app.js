@@ -116,18 +116,6 @@ function filterItems(idItem) {
     }
 }
 
-
-// Move class filter in last div.control
-
-const filterBlock = document.querySelector('.control .filter');
-console.log(filterBlock);
-const lastFilterBlock = document.querySelector('.control.control-last');
-// console.log(lastFilterBlock);
-
-// lastFilterBlock.appendChild(filterBlock);
-// lastFilterBlock.style.display = 'block';
-
-
 // Drag&Drop
 
 function addDragFunction() {
@@ -161,6 +149,26 @@ function addDragFunction() {
         });
     });
 }
+
+const match = matchMedia("(max-width: 550px)");
+
+match.addEventListener("change", ({ matches }) => {
+    if (matches) {
+        const filterBlock = document.querySelector(".control .filter");
+        const lastFilterBlock = document.querySelector(".control.control-last");
+        lastFilterBlock.appendChild(filterBlock);
+        lastFilterBlock.style.display = "block";
+    } else {
+        const filterBlock = document.querySelector(".filter");
+        const filterBlockMain = document.querySelector(".control");
+        console.log(filterBlockMain);
+
+        const lastFilterBlock = document.querySelector(".control.control-last");
+
+        filterBlockMain.insertBefore(filterBlock, filterBlockMain.lastElementChild);
+        lastFilterBlock.style.display = "none";
+    }
+});
 
 addRemoveFunction();
 addDragFunction();
