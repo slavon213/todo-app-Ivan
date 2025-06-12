@@ -43,8 +43,8 @@ Users should be able to:
 
 ### Links
 
-- Git: [Add solution URL here](https://github.com/slavon213/todo-app-Ivan)
-- Live Site URL: [Add live site URL here](https://slavon213.github.io/todo-app-Ivan/)
+- Git: [Git Repository](https://github.com/slavon213/todo-app-Ivan)
+- Live Site URL: [Git Pages](https://slavon213.github.io/todo-app-Ivan/)
 
 ## My process
 
