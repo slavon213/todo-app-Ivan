@@ -4,19 +4,20 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
 
 ## Table of contents
 
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
-- [Author](#author)
-- [Acknowledgments](#acknowledgments)
+- [Frontend Mentor - Todo app solution](#frontend-mentor---todo-app-solution)
+  - [Table of contents](#table-of-contents)
+  - [Overview](#overview)
+    - [The challenge](#the-challenge)
+    - [Screenshot](#screenshot)
+    - [Links](#links)
+  - [My process](#my-process)
+    - [Built with](#built-with)
+    - [What I learned](#what-i-learned)
+      - [CSS](#css)
+      - [Javascript](#javascript)
+    - [Useful resources](#useful-resources)
+  - [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -35,21 +36,15 @@ Users should be able to:
 - **Bonus**: Drag and drop to reorder items on the list
 
 ### Screenshot
-
-![](./screenshot.jpg)
-
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+![desktop-light-theme](./solution/desktop-light.png)
+![desktop-ark-theme](./solution/desktop-dark.png)
+![mobile-light-theme](./solution/mobile-light.png)
+![mobile-dark-theme](./solution/mobile-dark.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Git: [Add solution URL here](https://github.com/slavon213/todo-app-Ivan)
+- Live Site URL: [Add live site URL here](https://slavon213.github.io/todo-app-Ivan/)
 
 ## My process
 
@@ -58,61 +53,106 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox
-- CSS Grid
-- Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- JavaScript
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
 
-To see how you can add code snippets, see below:
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
+#### CSS
+
+Під час виконання повторив знання з CSS по властивостям `background`, `Flex`, `transform: translate`.
+
+:bulb: Для того, щоб зробити бордер кольоровим градієнтом при `hover`, використав такий прийом:
 ```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
+ li input[type="checkbox"] ~ .checkmark:hover {
+        border-color: transparent;
+        background: linear-gradient(var(--bg-todos), var(--bg-todos)) padding-box,
+            linear-gradient(135deg, #57ddff, #c058f3) border-box;
+    }
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+Результат: ![circle](./solution/circle1.png ) 
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+---
 
-### Continued development
+:bulb: Для  анімації переходу зі стану `display: none;` до `display: block;` використав такий прийом від автора **Kevin Powell**:
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+```css
+/*  стан перед hover*/
+.remove {
+    display: none;
+    opacity: 0;
+    transition-property: display opacity;
+    transition-duration: var(--transition-end);
+    transition-behavior: allow-discrete;
+}
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+/* стан hover */
+
+.remove {
+            transition-property: display opacity;
+            transition-duration: var(--transition-start);
+            display: block;
+            opacity: 1;
+
+            @starting-style {
+                opacity: 0;
+            }
+        }
+```
+
+
+
+
+#### Javascript
+
+:bulb: Для перемикання кольорової теми використав стан `:checked` елемента `checkbox`:
+
+```javascript
+
+theme.addEventListener("click", () => {
+    document.querySelector("body").classList = [theme.checked ? "light-theme" : "dark-theme"];
+});
+```
+:bulb: Для сортування списку завдань з допомогою перетягування  використав Drag&Drop API. Визначав, на верхню чи нижню половину висоти елемента наведений курсор миші і відповідно вставляв елемент вище або нижче:
+
+```javascript
+itemLi.addEventListener("drop", (e) => {
+            const rect = e.target.getBoundingClientRect();
+            const itemY = e.clientY;
+            const halfLi = rect.top + rect.height / 2;
+
+            if (itemY < halfLi) {
+                e.target.parentNode.insertBefore(draggedElement, itemLi);
+            } else {
+                e.target.parentNode.insertBefore(draggedElement, itemLi.nextSibling);
+            }
+            e.target.classList.remove("dragged");
+        });
+```
+
+
+:bulb: Для контролю над шириною екрану використав `matchMedia()`:
+
+```javascript
+const match = matchMedia("(max-width: 550px)");
+
+match.addEventListener("change", ({ matches }) => {
+    movingFilter(matches);
+});
+```
+
+
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [Відео Kevin Powell про transitions для display](https://www.youtube.com/watch?v=vmDEHAzj2XE) -- автор показує різні способи додавання ефекту переходів з стану `display: none;` до `display: block;`
+- [Стаття про gradient-borders](https://codyhouse.co/nuggets/css-gradient-borders) -- автор демонструє різні підходи до формування кольорового градієнту на `border`.
 
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
 
-## Author
-
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
 
 ## Acknowledgments
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
+Дякую Івану за макет і знання :wave:
 
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
