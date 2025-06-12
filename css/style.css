@@ -371,14 +371,20 @@ ul {
     footer {
         margin-block-start: 40px;
     }
+    .light-theme {
+        --bg-image-top: 0 0 url("../images/bg-mobile-light.jpg") no-repeat;
+    }
+    .dark-theme {
+        --bg-image-top: 0 0 url("../images/bg-mobile-dark.jpg") no-repeat;
+    }
 
     .control {
         font-size: 12px;
     }
 
     .new-todo span {
-    width: 20px;
-    height: 20px;
+        width: 20px;
+        height: 20px;
     }
 
     .checkmark {

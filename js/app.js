@@ -150,10 +150,8 @@ function addDragFunction() {
     });
 }
 
-const match = matchMedia("(max-width: 550px)");
-
-match.addEventListener("change", ({ matches }) => {
-    if (matches) {
+function movingFilter(screen) {
+    if (screen) {
         const filterBlock = document.querySelector(".control .filter");
         const lastFilterBlock = document.querySelector(".control.control-last");
         lastFilterBlock.appendChild(filterBlock);
@@ -168,8 +166,15 @@ match.addEventListener("change", ({ matches }) => {
         filterBlockMain.insertBefore(filterBlock, filterBlockMain.lastElementChild);
         lastFilterBlock.style.display = "none";
     }
+}
+
+const match = matchMedia("(max-width: 550px)");
+
+match.addEventListener("change", ({ matches }) => {
+    movingFilter(matches);
 });
 
 addRemoveFunction();
 addDragFunction();
 updateItemsLeft();
+movingFilter(match.matches);
