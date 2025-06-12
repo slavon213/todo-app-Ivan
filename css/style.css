@@ -1,34 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
 
 :root {
-    /* text */
-    /* --text-main: 14px;
-    --lspacing-main: -0.19px;
-    --text-list: 18px;
-    --lspacing-list: -0.25px;
-    --text-logo: 40px;
-    --lspacing-logo: 15px; */
-
-    /* colors */
     --bright-blue: #3a7bfd;
-    /* light-theme */
-    /* --very-light-gray: #fafafa;
-    --very-light-grayish-blue: #e4e5f1;
-    --light--gayish-blue: #d2d3db;
-    --dark-grayish-blue: #9394a5;
-    --very-dark-grayish-blue: #484b6a; */
-
-    /* dark-theme */
-    /* --very-dark-blue: #161722;
-    --very-dark-desaturated-blue: #25273c;
-    --light-grayish-blue: #cacde8;
-    --light-grayish-blue-hover: #e4e5f1;
-    --dark-grayish-blue: #777a92;
-    --very-dark-grayish-blue: #4d5066;
-    --very-dark-grayish-blue: #393a4c; */
-
-    /* border-radius */
     --border-radius-5: 5px;
+    --item-height: 64px;
+    --transition-start: 100ms ease;
+    --transition-end: 700ms ease;
 }
 
 *,
@@ -62,8 +39,9 @@ body {
 }
 
 img {
-    display: block;
+    /* display: block; */
     width: 100%;
+    height: auto;
 }
 
 .flex-row {
@@ -76,8 +54,6 @@ img {
     --bg-image-top: 0 0 url("../images/bg-desktop-light.jpg") no-repeat;
     --bg-main-color: #fafafa;
     --bg-todos: #fafafa;
-    /* --color-font: #9394a5; */
-    /* --color-font-hover: #161722; */
     --color-font: #494c6b;
     --color-font-control: #9495a5;
     --color-font-new-todo: #393a4b;
@@ -109,13 +85,11 @@ footer {
 
 header {
     justify-content: space-between;
-    /* padding-block-start: 52px; */
-    /* padding-block-end: 11px; */
 }
 
-main {
-    /* margin-block-end: 49px; */
-}
+/* main {
+    margin-block-end: 49px;
+} */
 
 footer {
     text-align: center;
@@ -130,17 +104,6 @@ h1 {
     letter-spacing: 1rem;
     text-transform: uppercase;
 }
-/* 
-main {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    justify-content: center;
-} */
-
-/* .theme {
-    margin-block-start: -10px;
-} */
 
 .theme #theme {
     display: none;
@@ -161,7 +124,7 @@ main {
 
 .new-todo {
     background: var(--bg-todos);
-    height: 64px;
+    height: var(--item-height);
     border-radius: var(--border-radius-5);
     margin-block-end: 24px;
     padding-inline: 26px;
@@ -186,7 +149,6 @@ main {
     height: 50px;
     letter-spacing: -0.3px;
     font-family: "Josefin Sans", sans-serif;
-    /* font-size: 18px; */
     font-size: inherit;
     margin-block-start: 4px;
     margin-inline-start: 47px;
@@ -216,11 +178,12 @@ ul {
     list-style: none;
 
     li {
-        min-height: 64px;
+        height: var(--item-height);
         padding-inline-start: 25px;
         padding-inline-end: 10px;
         border-bottom: 1px solid var(--color-border-li);
         position: relative;
+        transition: color var(--transition-end);
     }
 
     li input[type="checkbox"] {
@@ -265,6 +228,7 @@ ul {
     }
 
     li:hover {
+        transition: color var(--transition-start);
         color: var(--color-font-hover);
 
         & .remove {
@@ -303,8 +267,13 @@ ul {
     background: var(--bg-todos);
     justify-content: space-between;
     color: var(--color-font-control);
+    
+    & * span {
+        transition: color var(--transition-end);
 
+    }
     & * span:hover {
+        transition: color var(--transition-start);
         color: var(--color-font-hover);
     }
 }
@@ -312,10 +281,9 @@ ul {
 .control-last {
     display: none;
     border-radius: var(--border-radius-5);
-    min-height: 48px;
+    height: var(--item-height);
     margin-block-start: 24px;
     box-shadow: 0px 35px 50px 15px var(--shadow-todos);
-    /* justify-content: center; */
 
     & .filter {
         font-size: 14px;
@@ -355,6 +323,10 @@ ul {
     border-bottom: 1px solid var(--bright-blue);
 }
 @media (max-width: 550px) {
+    :root {
+        --item-height: 48px;
+    }
+
     header,
     main,
     footer {
@@ -363,6 +335,7 @@ ul {
 
     body {
         font-size: 12px;
+        padding-block-start: 40px;
     }
     h1 {
         font-size: 26px;
@@ -371,6 +344,10 @@ ul {
     footer {
         margin-block-start: 40px;
     }
+
+    /* ul li {
+        min-height: 48px;
+    } */
     .light-theme {
         --bg-image-top: 0 0 url("../images/bg-mobile-light.jpg") no-repeat;
     }
@@ -380,6 +357,11 @@ ul {
 
     .control {
         font-size: 12px;
+    }
+
+    .new-todo {
+        /* height: 48px; */
+        margin-block-end: 16px;
     }
 
     .new-todo span {
