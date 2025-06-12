@@ -4,8 +4,8 @@
     --bright-blue: #3a7bfd;
     --border-radius-5: 5px;
     --item-height: 64px;
-    --transition-start: 100ms ease;
-    --transition-end: 700ms ease;
+    --transition-start: 100ms;
+    --transition-end: 700ms;
 }
 
 *,
@@ -52,7 +52,8 @@ img {
 
 .light-theme {
     --bg-image-top: 0 0 url("../images/bg-desktop-light.jpg") no-repeat;
-    --bg-main-color: #fafafa;
+    /* --bg-main-color: #fafafa; */
+    --bg-main-color: #f2f2f2;
     --bg-todos: #fafafa;
     --color-font: #494c6b;
     --color-font-control: #9495a5;
@@ -183,7 +184,7 @@ ul {
         padding-inline-end: 10px;
         border-bottom: 1px solid var(--color-border-li);
         position: relative;
-        transition: color var(--transition-end);
+        transition: color var(--transition-end) ease;
     }
 
     li input[type="checkbox"] {
@@ -228,18 +229,26 @@ ul {
     }
 
     li:hover {
-        transition: color var(--transition-start);
+        transition: color var(--transition-start) ease;
         color: var(--color-font-hover);
 
         & .remove {
+            transition-property: display opacity;
+            transition-duration: var(--transition-start);
             display: block;
+            opacity: 1;
+
+            @starting-style {
+                opacity: 0;
+            }
         }
     }
 }
 
 .checkmark {
     position: absolute;
-    top: -3px;
+    top: 50%;
+    transform: translateY(-50%);
     left: 0;
     height: 24px;
     width: 24px;
@@ -251,10 +260,15 @@ ul {
     width: 18px;
     height: 18px;
     display: none;
+    opacity: 0;
     cursor: pointer;
     position: absolute;
     right: 25px;
-    top: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition-property: display opacity;
+    transition-duration: var(--transition-end);
+    transition-behavior: allow-discrete;
 }
 
 .control {
@@ -267,10 +281,9 @@ ul {
     background: var(--bg-todos);
     justify-content: space-between;
     color: var(--color-font-control);
-    
+
     & * span {
         transition: color var(--transition-end);
-
     }
     & * span:hover {
         transition: color var(--transition-start);
