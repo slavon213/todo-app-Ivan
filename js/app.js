@@ -1,5 +1,4 @@
 const theme = document.getElementById("theme");
-
 const newItemInput = document.getElementById("addItem");
 const todoList = document.querySelector(".todos ul");
 const itemsLeft = document.querySelector(".items-left span");
@@ -43,11 +42,11 @@ function createNewTodoItem(value) {
     element.addEventListener("change", () => {
         updateItemsLeft();
     });
-    addDragFunction(element);
 
     todoList.append(element);
+    addRemoveFunction(element);
 
-    addRemoveFunction();
+    addDragFunction(element);
     updateItemsLeft();
 }
 
@@ -66,7 +65,6 @@ function removeTodo(elem) {
     elem.remove();
     updateItemsLeft();
 }
-
 
 function addRemoveFunction(element) {
     element.addEventListener("click", () => {
@@ -116,37 +114,41 @@ function filterItems(idItem) {
 
 // Drag&Drop
 
-function addDragFunction() {
-    let draggedElement = null;
-    const listLiItems = document.querySelectorAll("li");
-    listLiItems.forEach((itemLi) => {
-        itemLi.addEventListener("dragstart", () => {
-            draggedElement = itemLi;
-        });
+let draggedElement = null;
 
-        itemLi.addEventListener("dragover", (e) => {
-            e.preventDefault();
-            e.target.classList.add("dragged");
-        });
+function addDragFunction(element) {
+    
+    element.addEventListener("dragstart", () => {
+        draggedElement = element;
+    });
 
-        itemLi.addEventListener("dragleave", (e) => {
-            e.target.classList.remove("dragged");
-        });
+    element.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        e.target.classList.add("dragged");
+    });
 
-        itemLi.addEventListener("drop", (e) => {
-            const rect = e.target.getBoundingClientRect();
-            const itemY = e.clientY;
-            const halfLi = rect.top + rect.height / 2;
+    element.addEventListener("dragleave", (e) => {
+        e.target.classList.remove("dragged");
+    });
 
-            if (itemY < halfLi) {
-                e.target.parentNode.insertBefore(draggedElement, itemLi);
-            } else {
-                e.target.parentNode.insertBefore(draggedElement, itemLi.nextSibling);
-            }
-            e.target.classList.remove("dragged");
-        });
+    element.addEventListener("drop", (e) => {
+        const rect = e.target.getBoundingClientRect();
+        const itemY = e.clientY;
+        const halfLi = rect.top + rect.height / 2;
+
+        if (itemY < halfLi) {
+            e.target.parentNode.insertBefore(draggedElement, element);
+        } else {
+            e.target.parentNode.insertBefore(draggedElement, element.nextSibling);
+        }
+        e.target.classList.remove("dragged");
     });
 }
+
+const listLiItems = document.querySelectorAll("li");
+listLiItems.forEach((itemLi) => {
+    addDragFunction(itemLi);
+});
 
 function movingFilter(screen) {
     if (screen) {
@@ -176,6 +178,5 @@ removeButtonsList.forEach((buttonElement) => {
     addRemoveFunction(buttonElement);
 });
 
-addDragFunction();
 updateItemsLeft();
 movingFilter(match.matches);
