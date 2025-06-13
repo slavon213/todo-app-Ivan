@@ -124,22 +124,23 @@ function addDragFunction(element) {
 
     element.addEventListener("dragover", (e) => {
         e.preventDefault();
-        e.target.classList.add("dragged");
+        e.target.closest("li").classList.add("dragged");
     });
 
     element.addEventListener("dragleave", (e) => {
-        e.target.classList.remove("dragged");
+        e.target.closest("li").classList.remove("dragged");
     });
 
     element.addEventListener("drop", (e) => {
+        e.target.closest("li").classList.remove("dragged");
         const rect = e.target.getBoundingClientRect();
         const itemY = e.clientY;
         const halfLi = rect.top + rect.height / 2;
 
         if (itemY < halfLi) {
-            e.target.parentNode.insertBefore(draggedElement, element);
+            e.target.closest("ul").insertBefore(draggedElement, element);
         } else {
-            e.target.parentNode.insertBefore(draggedElement, element.nextSibling);
+            e.target.closest("ul").insertBefore(draggedElement, element.nextSibling);
         }
         e.target.classList.remove("dragged");
     });
