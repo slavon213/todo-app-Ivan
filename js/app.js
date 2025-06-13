@@ -108,6 +108,9 @@ function filterItems(idItem) {
             });
 
         default:
+            allItems.forEach((item) => {
+                item.querySelector("input").checked ? item.classList.remove("hidden") : item.classList.add("hidden");
+            });
             break;
     }
 }
