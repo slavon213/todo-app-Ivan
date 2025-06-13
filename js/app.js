@@ -28,6 +28,7 @@ addClick.addEventListener("click", () => {
 });
 
 function createNewTodoItem(value) {
+    value = value.charAt(0).toUpperCase() + value.slice(1);
     const element = document.createElement("li");
     element.setAttribute("draggable", "true");
     element.classList.add("flex-row");
@@ -43,10 +44,9 @@ function createNewTodoItem(value) {
         updateItemsLeft();
     });
 
-    todoList.append(element);
-    addRemoveFunction(element);
-
+    addRemoveFunction(element.querySelector(".remove"));
     addDragFunction(element);
+    todoList.append(element);
     updateItemsLeft();
 }
 
@@ -120,7 +120,6 @@ function filterItems(idItem) {
 let draggedElement = null;
 
 function addDragFunction(element) {
-    
     element.addEventListener("dragstart", () => {
         draggedElement = element;
     });
