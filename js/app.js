@@ -43,12 +43,12 @@ function createNewTodoItem(value) {
     element.addEventListener("change", () => {
         updateItemsLeft();
     });
+    addDragFunction(element);
 
     todoList.append(element);
 
     addRemoveFunction();
     updateItemsLeft();
-    addDragFunction();
 }
 
 function updateItemsLeft() {
@@ -67,13 +67,11 @@ function removeTodo(elem) {
     updateItemsLeft();
 }
 
-function addRemoveFunction() {
-    const removeButtonsList = document.querySelectorAll("ul li span.remove");
-    removeButtonsList.forEach((buttonElement) => {
-        buttonElement.addEventListener("click", () => {
-            let liElement = buttonElement.closest("li");
-            removeTodo(liElement);
-        });
+
+function addRemoveFunction(element) {
+    element.addEventListener("click", () => {
+        let liElement = element.closest("li");
+        removeTodo(liElement);
     });
 }
 
@@ -159,7 +157,6 @@ function movingFilter(screen) {
     } else {
         const filterBlock = document.querySelector(".filter");
         const filterBlockMain = document.querySelector(".control");
-        console.log(filterBlockMain);
 
         const lastFilterBlock = document.querySelector(".control.control-last");
 
@@ -174,7 +171,11 @@ match.addEventListener("change", ({ matches }) => {
     movingFilter(matches);
 });
 
-addRemoveFunction();
+const removeButtonsList = document.querySelectorAll("ul li span.remove");
+removeButtonsList.forEach((buttonElement) => {
+    addRemoveFunction(buttonElement);
+});
+
 addDragFunction();
 updateItemsLeft();
 movingFilter(match.matches);
